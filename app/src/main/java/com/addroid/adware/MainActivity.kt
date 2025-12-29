@@ -182,10 +182,6 @@ class MainActivity : AppCompatActivity() {
             Toast.LENGTH_SHORT,
           )
             .show()
-            try{
-                client.newCall(loadAd())
-            }
-            catch (e: Exception) {}
           applicationContext.stopService(Intent(this@MainActivity, AdsService::class.java))
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             applicationContext.startForegroundService(Intent(this@MainActivity,
