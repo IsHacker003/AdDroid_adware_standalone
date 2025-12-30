@@ -381,6 +381,7 @@ class MainActivity : AppCompatActivity() {
 
   override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
+        Log.d(TAG, "Received intent, "+minimized.toString())
         if (minimized) {
             showInterstitial()
         }
@@ -390,7 +391,7 @@ class MainActivity : AppCompatActivity() {
     // This is an ad unit ID for a test ad. Replace with your own interstitial ad unit ID.
     const val AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"
     private const val GAME_LENGTH_MILLISECONDS = 100L
-    const val TAG = "MainActivity"
+    const val TAG = "AdDroid"
     const val TEST_DEVICE_HASHED_ID = "ABCDEF012345"
   }
 }
