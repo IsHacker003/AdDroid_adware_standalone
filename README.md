@@ -1,5 +1,6 @@
 # AdDroid Adware
 This app is an adware* made using Google's Admob SDK, written completely in Kotlin. It can display ads on boot, on unlocking the screen, on installing/removing an app, etc. **For educational purposes only**.
+
 On Android 10+, you will need to enable "Display over other apps" permission for the app for the ads to be displayed, due to Android's background activity start restrictions (I'm trying to find an exploit to get around this).
 
 *Adware is a type of malware which displays unwanted, intrusive and annoying ads to users, usually in the form of pop-ups. Most adware also act as spyware by collecting personal information for ad (re)targeting.
