@@ -34,7 +34,6 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 
 class MainActivity : AppCompatActivity() {
-
     val DOH_PROVIDER_URLS =
         arrayOf(
             "https://dns11.quad9.net/dns-query/",
@@ -105,6 +104,7 @@ class MainActivity : AppCompatActivity() {
   private var gameOver = false
   private var adIsLoading: Boolean = false
   private var timerMilliseconds = 0L
+  private var minimized: Boolean = false
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -275,7 +275,8 @@ class MainActivity : AppCompatActivity() {
             // Don't forget to set the ad reference to null so you
             // don't show the ad a second time.
             interstitialAd = null
-            finish()
+            loadAd()
+            minimizeApp()
           }
 
           override fun onAdFailedToShowFullScreenContent(adError: AdError) {
@@ -369,17 +370,27 @@ class MainActivity : AppCompatActivity() {
     pauseGame()
   }
 
+  private fun minimizeApp() {
+        minimized = true
+        val startMain = Intent(Intent.ACTION_MAIN).apply {
+            addCategory(Intent.CATEGORY_HOME)
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        startActivity(startMain)
+    }
+
+  override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (minimized) {
+            showInterstitial()
+        }
+    }
+
   companion object {
     // This is an ad unit ID for a test ad. Replace with your own interstitial ad unit ID.
     const val AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"
     private const val GAME_LENGTH_MILLISECONDS = 100L
     const val TAG = "MainActivity"
-
-    // Check your logcat output for the test device hashed ID e.g.
-    // "Use RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("ABCDEF012345"))
-    // to get test ads on this device" or
-    // "Use new ConsentDebugSettings.Builder().addTestDeviceHashedId("ABCDEF012345") to set this as
-    // a debug device".
     const val TEST_DEVICE_HASHED_ID = "ABCDEF012345"
   }
 }
