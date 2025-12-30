@@ -19,8 +19,7 @@ On Android 10+, you will need to enable "Display over other apps" permission for
 8. When an ad is closed, all apps will be minimized and the launcher/homescreen will be displayed, making the adware extremely annoying
 
 ## Development status
-Currently in alpha. WIP.
-APK can be downloaded from Releases section.
+Development is still in progress. APK will be available in releases soon.
 
 ## Compiling
 The APK can be compiled normally using Android Studio. The app uses test ads, if you want to show real ads then replace the `AD_UNIT_ID` variable inside `MainActivity.kt` with your own interstitial ad unit ID (but your account will probably get banned). **Do not use the app for illegal purposes**.
