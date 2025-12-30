@@ -16,6 +16,7 @@ On Android 10+, you will need to enable "Display over other apps" permission for
 5. Very small APK size (~3MB)
 6. The adware gets activated only after the user reboots after installing the app
 7. Full-screen interstitial ads will be constantly shown while in the settings app, making it painful to uninstall the adware through Settings > Apps (**this behavior was tested on AOSP Android 13**)
+8. When an ad is closed, all apps will be minimized and the launcher/homescreen will be displayed, making the adware extremely annoying
 
 ## Development status
 Currently in alpha. WIP.
