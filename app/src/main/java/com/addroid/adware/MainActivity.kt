@@ -149,45 +149,61 @@ class MainActivity : AppCompatActivity() {
     if (adIsLoading || interstitialAd != null) {
       return
     }
-    adIsLoading = true
+      else {
+        adIsLoading = true
 
-    // [START load_ad]
-    InterstitialAd.load(
-      this,
-      AD_UNIT_ID,
-      AdRequest.Builder().build(),
-      object : InterstitialAdLoadCallback() {
-        override fun onAdLoaded(ad: InterstitialAd) {
-          Log.d(TAG, "Ad was loaded.")
-          interstitialAd = ad
-          // [START_EXCLUDE silent]
-          adIsLoading = false
-          // [END_EXCLUDE]
-        }
+        // [START load_ad]
+        InterstitialAd.load(
+            this,
+            AD_UNIT_ID,
+            AdRequest.Builder().build(),
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(ad: InterstitialAd) {
+                    Log.d(TAG, "Ad was loaded.")
+                    interstitialAd = ad
+                    // [START_EXCLUDE silent]
+                    adIsLoading = false
+                    // [END_EXCLUDE]
+                }
 
-        override fun onAdFailedToLoad(adError: LoadAdError) {
-          Log.d(TAG, adError.message)
-          interstitialAd = null
-          // [START_EXCLUDE silent]
-          adIsLoading = false
-          Toast.makeText(
-            this@MainActivity,
-            "Ad failed to load",
-            Toast.LENGTH_SHORT,
-          )
-            .show()
-          applicationContext.stopService(Intent(this@MainActivity, AdsService::class.java))
-          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            applicationContext.startForegroundService(Intent(this@MainActivity,
-              AdblockBypassService::class.java))
-          } else {
-            applicationContext.startService(Intent(this@MainActivity, AdblockBypassService::class.java))
-          }
-          finish()
-          // [END_EXCLUDE]
-        }
-      },
-    )
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d(TAG, adError.message)
+                    interstitialAd = null
+                    // [START_EXCLUDE silent]
+                    adIsLoading = false
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Ad failed to load",
+                        Toast.LENGTH_SHORT,
+                    )
+                        .show()
+                    applicationContext.stopService(
+                        Intent(
+                            this@MainActivity,
+                            AdsService::class.java
+                        )
+                    )
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        applicationContext.startForegroundService(
+                            Intent(
+                                this@MainActivity,
+                                AdblockBypassService::class.java
+                            )
+                        )
+                    } else {
+                        applicationContext.startService(
+                            Intent(
+                                this@MainActivity,
+                                AdblockBypassService::class.java
+                            )
+                        )
+                    }
+                    finish()
+                    // [END_EXCLUDE]
+                }
+            },
+        )
+    }
     // [END load_ad]
   }
 
