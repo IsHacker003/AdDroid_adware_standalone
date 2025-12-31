@@ -134,11 +134,10 @@ class MainActivity : AppCompatActivity() {
     //  }
     //  if (googleMobileAdsConsentManager.isPrivacyOptionsRequired) {
     //    invalidateOptionsMenu()
-    //  }
+    //   }
     //}
-    initializeMobileAdsSdk()
-    loadAd()
-
+    //initializeMobileAdsSdk()
+    //loadAd()
     binding.retryButton.visibility = View.INVISIBLE
     binding.retryButton.setOnClickListener { showInterstitial() }
     showInterstitial()
@@ -149,7 +148,7 @@ class MainActivity : AppCompatActivity() {
     if (adIsLoading || interstitialAd != null) {
       return
     }
-      else {
+    else {
         adIsLoading = true
 
         // [START load_ad]
@@ -251,8 +250,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-  // Create the game timer, which counts down to the end of the level
-  // and shows the "retry" button.
   private fun createTimer(milliseconds: Long) {
     countdownTimer?.cancel()
 
@@ -273,7 +270,7 @@ class MainActivity : AppCompatActivity() {
     countdownTimer?.start()
   }
 
-  // Show the ad if it's ready. Otherwise restart the game.
+  // Show the ad if it's ready
   private fun showInterstitial() {
     if (interstitialAd != null) {
       // [START set_fullscreen_callback]
@@ -319,8 +316,10 @@ class MainActivity : AppCompatActivity() {
       // [END show_ad]
     } else {
       startGame()
-      loadAd()
-      showInterstitial()
+      if (googleMobileAdsConsentManager.canRequestAds) {  
+        loadAd()
+        showInterstitial()
+      } 
     }
   }
 
@@ -365,6 +364,7 @@ class MainActivity : AppCompatActivity() {
         loadAd()
       }
     }
+      Log.d(TAG, "Initialized Ad SDK")
   }
 
   // Resume the game if it's in progress.
