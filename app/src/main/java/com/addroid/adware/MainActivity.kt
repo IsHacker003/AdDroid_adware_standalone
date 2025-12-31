@@ -25,10 +25,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.Dns
-import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
-import okhttp3.OkHttpClient.Builder
 import okhttp3.dnsoverhttps.DnsOverHttps
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -119,7 +117,6 @@ class MainActivity : AppCompatActivity() {
       }
     }
     onBackPressedDispatcher.addCallback(this) {
-      loadAd()
       showInterstitial()
     }
     binding = ActivityMainBinding.inflate(layoutInflater)
@@ -131,20 +128,17 @@ class MainActivity : AppCompatActivity() {
     Log.d(TAG, "Google Mobile Ads SDK Version: " + MobileAds.getVersion())
 
     googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(this)
-    googleMobileAdsConsentManager.gatherConsent(this) { consentError ->
-      if (consentError != null) {
-        // Consent not obtained in current session.
-        Log.w(TAG, "${consentError.errorCode}: ${consentError.message}")
-      }
-      if (googleMobileAdsConsentManager.isPrivacyOptionsRequired) {
-        // Regenerate the options menu to include a privacy setting.
-        invalidateOptionsMenu()
-      }
-    }
+    //googleMobileAdsConsentManager.gatherConsent(this) { consentError ->
+    //  if (consentError != null) {
+    //    Log.w(TAG, "${consentError.errorCode}: ${consentError.message}")
+    //  }
+    //  if (googleMobileAdsConsentManager.isPrivacyOptionsRequired) {
+    //    invalidateOptionsMenu()
+    //  }
+    //}
     initializeMobileAdsSdk()
     loadAd()
 
-    // Create the "retry" button, which triggers an interstitial between game plays.
     binding.retryButton.visibility = View.INVISIBLE
     binding.retryButton.setOnClickListener { showInterstitial() }
     showInterstitial()
@@ -309,13 +303,11 @@ class MainActivity : AppCompatActivity() {
       // [END show_ad]
     } else {
       startGame()
-      if (googleMobileAdsConsentManager.canRequestAds) {
-        loadAd()
-      }
+      loadAd()
+      showInterstitial()
     }
   }
 
-  // Hide the button, and kick off the timer.
   private fun startGame() {
     binding.retryButton.visibility = View.INVISIBLE
     createTimer(GAME_LENGTH_MILLISECONDS)
