@@ -12,8 +12,8 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.PRIORITY_MIN
-import com.addroid.adware.MainActivity.Companion.AD_UNIT_ID
-import com.addroid.adware.MainActivity.Companion.TAG
+import com.addroid.adware.Constants.Companion.TAG
+import com.addroid.adware.Constants.Companion.AD_UNIT_ID
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
