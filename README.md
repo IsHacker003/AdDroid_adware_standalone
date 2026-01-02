@@ -22,7 +22,7 @@ On Android 10+, you will need to enable "Display over other apps" permission for
 APK available in [Releases](https://github.com/IsHacker003/AdDroid_adware_standalone/releases).
 
 ## Compiling
-The APK can be compiled normally using Android Studio. The app uses test ads, if you want to show real ads then replace the `AD_UNIT_ID` variable inside `MainActivity.kt` with your own interstitial ad unit ID (but your account will probably get banned). **Do not use the app for illegal purposes**.
+The APK can be compiled normally using Android Studio. The app uses test ads, if you want to show real ads then replace the `AD_UNIT_ID` variable inside `Constants.kt` with your own interstitial ad unit ID (but your account will probably get banned). **Do not use the app for illegal purposes**.
 
 ## Ad blockers
 When the app is not able to connect to `googleads.g.doubleclick.net` to load the ad due to an ad blocker app, firewall or DNS service, the main service (AdsService.kt) is killed, so that empty popup windows are not displayed. Instead, another service (AdblockBypassService.kt) is started, which tries to load the ad every second (as a bonus, this also slows down the device). The second the ad blocker has been disabled, this service loads the ad and starts the main service again, causing the ads to appear.
