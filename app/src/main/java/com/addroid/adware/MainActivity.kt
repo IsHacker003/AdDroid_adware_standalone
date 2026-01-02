@@ -133,20 +133,22 @@ class MainActivity : AppCompatActivity() {
                             AdsService::class.java
                         )
                     )
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        applicationContext.startForegroundService(
-                            Intent(
-                                this@MainActivity,
-                                AdblockBypassService::class.java
+                    if (getIntent().getStringExtra("BroadcastReceiver")?.equals("1") == true) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            applicationContext.startForegroundService(
+                                Intent(
+                                    this@MainActivity,
+                                    AdblockBypassService::class.java
+                                )
                             )
-                        )
-                    } else {
-                        applicationContext.startService(
-                            Intent(
-                                this@MainActivity,
-                                AdblockBypassService::class.java
+                        } else {
+                            applicationContext.startService(
+                                Intent(
+                                    this@MainActivity,
+                                    AdblockBypassService::class.java
+                                )
                             )
-                        )
+                        }
                     }
                     finish()
                     // [END_EXCLUDE]

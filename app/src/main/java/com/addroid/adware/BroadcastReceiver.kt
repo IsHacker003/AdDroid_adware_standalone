@@ -15,6 +15,7 @@ class ShowAds : BroadcastReceiver() {
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent?.getAction())) {
             i.putExtra("BootReceived","1")
         }
+        i.putExtra("BroadcastReceiver", "1")
         context?.startActivity(i)
     }
 }
