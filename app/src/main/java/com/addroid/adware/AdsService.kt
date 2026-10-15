@@ -31,6 +31,7 @@ class AdsService : Service() {
         intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED)
         intentFilter.addAction(Intent.ACTION_BATTERY_LOW)
         intentFilter.addAction(Intent.ACTION_PACKAGE_CHANGED)
+        intentFilter.addAction(Intent.ACTION_USER_UNLOCKED)
         intentFilter.addDataScheme("package")
         val rec = ShowAds()
         registerReceiver(rec, intentFilter)
